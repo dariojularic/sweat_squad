@@ -1,5 +1,5 @@
 class SportEvent < ApplicationRecord
-  SPORTS = ["array of sports"]
+  SPORTS = %w[futsal basketball football tennis volleyball badminton table-tennis]
   belongs_to :user
   has_many :users, through: :requests
   has_many :reviews

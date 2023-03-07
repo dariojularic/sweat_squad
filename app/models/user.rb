@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :sport_events, dependent: :destroy
-  has_many :invitations, dependent: :destroy
+  has_many :requests, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :messages, dependent: :destroy
   # validates :first_name, presence: true, length: { minimum: 2 }
