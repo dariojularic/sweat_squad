@@ -1,0 +1,10 @@
+<h1>Show page</h1>
+<ul>
+  <li><%= @sport_event.address %></li>
+  <li><%= @sport_event.sport %></li>
+  <li><%= @sport_event.start_at %></li>
+  <li><%= @sport_event.description %></li>
+  <li><%= @sport_event.user.username %></li>
+</ul>
+<%= link_to "Home", root_path %>
+<%= link_to "List of events", sport_events_path %>
