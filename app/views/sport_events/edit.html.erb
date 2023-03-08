@@ -1,0 +1,10 @@
+<h1>This is EDIT page FORM</h1>
+<%= simple_form_for(@sport_event) do |f| %>
+  <%= f.input :address %>
+  <%= f.input :sport %>
+  <%= f.input :description %>
+  <%= f.input :start_at %>
+  <%= f.submit %>
+<% end %>
+<%= link_to "Home", root_path %>
+<%= link_to "List of events", sport_events_path %>

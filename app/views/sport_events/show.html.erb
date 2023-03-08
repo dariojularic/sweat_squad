@@ -6,5 +6,12 @@
   <li><%= @sport_event.description %></li>
   <li><%= @sport_event.user.username %></li>
 </ul>
+<%= simple_form_for [@sport_event, @request] do |f| %>
+  <%= f.input :message %>
+  <%= f.submit %>
+<% end %>
 <%= link_to "Home", root_path %>
 <%= link_to "List of events", sport_events_path %>
+<%= link_to "Update event", edit_sport_event_path(@sport_event) %>
+<%= button_to 'Delete Post', @sport_event, method: :delete %>
+<%= link_to "Go to chat",  chat_sport_event_path(@sport_event) %>

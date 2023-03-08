@@ -8,5 +8,8 @@ Rails.application.routes.draw do
   resources :sport_events do
     resources :requests, only: [:create]
     resources :reviews, only: [:create]
+    member do
+      get "chat"
+    end
   end
 end
