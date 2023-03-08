@@ -1,5 +1,5 @@
 class SportEvent < ApplicationRecord
-  SPORTS = %w[futsal basketball football tennis volleyball badminton table-tennis]
+  SPORTS = %w[futsal basketball squash football tennis volleyball badminton table-tennis]
   belongs_to :user
   has_many :users, through: :requests
   has_many :reviews

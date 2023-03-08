@@ -1,13 +1,13 @@
-<h1>List of events</h1>
-<ol>
+<center><h1>List of events</h1></center>
+<div class= "cards">
   <% @sport_events.each do |event| %>
-    <li><ul><%= link_to "Go to event", sport_event_path(event) %></li>
-    <li><%= event.address %></li>
-    <li><%= event.description %></li>
-    <li><%= event.start_at %></li>
-    <li><%= event.sport %></li>
-    <li><%= event.user.username %></ul></li>
+    <div class= "card">
+      <img src=<%= asset_path "1.jpg" %>>
+      <ul>
+        <li style="list-style-type: none;"><%= event.sport %></li>
+        <li style="list-style-type: none;"><%= event.address %></li>
+        <li style="list-style-type: none;"><%= event.start_at %></li>
+      </ul>
+    </div>
   <% end %>
-</ol>
-<%= link_to "Home", root_path %>
-<%= link_to "Create an event", new_sport_event_path %>
+</div>
