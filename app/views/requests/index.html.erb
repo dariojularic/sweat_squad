@@ -1,0 +1,7 @@
+<h1>This is index for requests</h1>
+<ul>
+  <% @requests.each do |request| %>
+    <li><%= request.message %></li>
+    <li><%= request.user.username %></li>
+  <% end %>
+</ul>
