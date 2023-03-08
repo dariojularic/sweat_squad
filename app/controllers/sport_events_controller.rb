@@ -11,6 +11,7 @@ class SportEventsController < ApplicationController
   def show
     @sport_event = SportEvent.find(params[:id])
     @request = Request.new
+    # @message = Message.new
     # @review = Review.new
   end
 
@@ -50,6 +51,8 @@ class SportEventsController < ApplicationController
 
   def chat
     @sport_event = SportEvent.find(params[:id])
+    @messages = @sport_event.messages
+    @message = Message.new
   end
 
   private
