@@ -1,10 +1,12 @@
 <h1>List of events</h1>
-<ol><% @sport_events.each do |event| %>
-  <li><%= event.address %></li>
-  <li><%= event.description %></li>
-  <li><%= event.start_at %></li>
-  <li><%= event.sport %></li>
-  <li><%= event.user.username %></li>
+<ol>
+  <% @sport_events.each do |event| %>
+    <li><ul><%= link_to "Go to event", sport_event_path(event) %></li>
+    <li><%= event.address %></li>
+    <li><%= event.description %></li>
+    <li><%= event.start_at %></li>
+    <li><%= event.sport %></li>
+    <li><%= event.user.username %></ul></li>
   <% end %>
 </ol>
 <%= link_to "Home", root_path %>
