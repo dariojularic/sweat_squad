@@ -1,18 +1,34 @@
-<h1>This is the dashboard</h1>
+<h1>My dashboard</h1>
 <h2>Events I'm hosting</h2>
-<ol>
-  <% @sport_events.each do |event| %>
-    <li><%= link_to event.sport, sport_event_path(event) %>
-    <%= event.user.username %></li>
-  <% end %>
-</ol>
+<div class= "cards">
+    <% @sport_events.each do |event| %>
+      <div class= "card">
+        <img src=<%= asset_path "1.jpg" %>>
+        <ul>
+          <li style="list-style-type: none;"><%= event.user.username %></li>
+          <li style="list-style-type: none;"><%= link_to event.sport, sport_event_path(event) %>
+          <li style="list-style-type: none;"><%= event.address %></li>
+          <li style="list-style-type: none;"><%= event.start_at %></li>
+        </ul>
+      </div>
+    <% end %>
+</div>
 
 <h2>Events I'm participating</h2>
-<ol>
+
+<div class= "cards">
   <% @requests.each do |request| %>
-    <li><%= link_to request.sport_event.sport, sport_event_path(request.sport_event) %>
-    <%= request.sport_event.user.username %></li>
-  <% end %>
-</ol>
+    <div class= "card">
+      <img src=<%= asset_path "1.jpg" %>>
+        <ul>
+          <li><%= link_to request.sport_event.sport, sport_event_path(request.sport_event) %></li>
+          <li><%= request.sport_event.user.username %></li>
+          <li style="list-style-type: none;"><%= event.address %></li>
+          <li style="list-style-type: none;"><%= event.start_at %></li>
+        </ul>
+      </div>
+    <% end %>
+</div>
+
 
 <%= link_to "List of events", sport_events_path %>

@@ -1,6 +1,13 @@
+.cardshow_container {
+width: 100%;
+}
+
 .card {
   height: 200px;
+  width: 200px;
   border-radius: 12px;
+  margin: 8px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 }
 
 .card img {

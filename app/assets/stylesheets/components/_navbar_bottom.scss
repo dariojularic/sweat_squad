@@ -1,0 +1,20 @@
+.navfooter {
+width: 100%;
+text-align: center;
+background-color: blue;
+}
+
+.flex-container {
+display: flex;
+justify-content: space-evenly;
+}
+
+.navfooter-links {
+font-size: 20px;
+padding: 20px;
+color: yellow;
+}
+
+.footer-buffer {
+min-height: 60px;
+}
