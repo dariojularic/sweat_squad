@@ -6,10 +6,19 @@
 
   <div class="form-inputs">
     <%= f.input :email,
-                required: true,
-                autofocus: true,
-                value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email),
-                input_html: { autocomplete: "email" } %>
+            required: true,
+            autofocus: true,
+            value:
+              (
+                if resource.pending_reconfirmation?
+                  resource.unconfirmed_email
+                else
+                  resource.email
+                end
+              ),
+            input_html: {
+              autocomplete: "email"
+            } %>
   </div>
 
   <div class="form-actions">

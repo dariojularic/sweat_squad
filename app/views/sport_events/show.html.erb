@@ -1,11 +1,18 @@
 <h1>Show page</h1>
-<ul>
-  <li><%= @sport_event.address %></li>
-  <li><%= @sport_event.sport %></li>
-  <li><%= @sport_event.start_at.strftime("%d %B %Y %H:%M") %></li>
-  <li><%= @sport_event.description %></li>
-  <li><%= link_to @sport_event.user.username, profile_path(@sport_event.user.id) %></li>
-</ul>
+<div class= "cardshow_container">
+  <div class= "cardshow">
+    <img src=<%= asset_path "1.jpg" %>>
+      <div class= "event_info">
+        <ul>
+          <li style="list-style-type: none;"><p><%= link_to @sport_event.user.username, profile_path(@sport_event.user.id) %></p></li>
+          <li style="list-style-type: none;"><p><%= @sport_event.sport %></p></li>
+          <li style="list-style-type: none;"><p><%= @sport_event.address %></p></li>
+          <li style="list-style-type: none;"><p><%= @sport_event.description %></p></li>
+          <li style="list-style-type: none;"><p><%= @sport_event.start_at.strftime("%d %B %Y %H:%M") %></p></li>
+        </ul>
+      </div>
+  </div>
+</div>
 
 <ol>
   <% @sport_event.requests.each do |request| %>
@@ -14,6 +21,7 @@
     <% end %>
   <% end %>
 </ol>
+
 
 <% if current_user != @sport_event.user && (@user_request.nil? || !@user_request.accepted) %> <%# display only if the user hasnt sent a request yet %>
   <%= simple_form_for [@sport_event, @request] do |f| %>
