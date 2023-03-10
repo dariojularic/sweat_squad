@@ -41,12 +41,11 @@
   <%= link_to "Go to chat", chat_sport_event_path(@sport_event) %>
 <% end %>
 
-<% if @user_request && @user_request.accepted %>
-  <%= simple_form_for [@sport_event, @review] do |f| %>
+
+<%= simple_form_for [@sport_event, @review] do |f| %>
     <%= f.input :rating %>
     <%= f.input :content %>
     <%= f.submit %>
-  <% end %>
 <% end %>
 
 <% if current_user == @sport_event.user %>
@@ -54,11 +53,3 @@
   <%= link_to "Update event", edit_sport_event_path(@sport_event) %>
   <%= button_to 'Delete Post', @sport_event, method: :delete %>
 <% end %>
-
-<%# This code is for cloudinary %>
-<%#
-<% image_sport_event = "https://res.cloudinary.com/dc5dpsxvz/image/upload/v1678396660/SweatSquad/moises-alex-WqI-PbYugn4-unsplash_ukmeaf.jpg" %>
-
-<%# <div class="square"> %>
-  <%# <img src="<%= image_sport_event %>
-<%# </div> %>
