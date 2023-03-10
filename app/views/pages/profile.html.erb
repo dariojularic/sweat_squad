@@ -1,6 +1,15 @@
 <h1>This is a <%= @user.username %> user profile</h1>
+<% sum = 0 %>
+<% counter = 0 %>
+<% @user.sport_events.each do |event| %>
+  <% event.reviews.each do |review| %>
+    <% sum += review.rating %>
+    <% counter += 1 %>
+  <% end %>
+<% end %>
+<% sum = sum / counter.to_f %>
+<h3><%= @user.username %><i class="fa-solid fa-star"></i> <%= sum.round(1) %></h3>
 
-<h3><%= @user.username %></h3>
 <% @user.sport_events.each do |event| %>
   <% event.reviews.each do |review| %>
     <h4><%= review.user.username %></h4>
