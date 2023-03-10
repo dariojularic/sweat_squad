@@ -9,4 +9,10 @@ class PagesController < ApplicationController
     @sport_events = @user.sport_events
     @requests = @user.requests
   end
+
+  def profile
+    @user = User.find(params[:user_id])
+    @sport_events = @user.sport_events
+
+  end
 end

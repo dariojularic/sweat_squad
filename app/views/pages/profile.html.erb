@@ -1,0 +1,11 @@
+<h1>This is a <%= @user.username %> user profile</h1>
+
+<h3><%= @user.username %></h3>
+<% @user.sport_events.each do |event| %>
+  <% event.reviews.each do |review| %>
+    <h4><%= review.user.username %></h4>
+    <p><%= review.rating %></p>
+    <p><%= review.content %></p>
+  <% end %>
+<% end %>
+<br>

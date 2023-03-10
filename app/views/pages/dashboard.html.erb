@@ -1,17 +1,21 @@
-<h1>This is the dashboard</h1>
+<h1>Welcome, <%= @user.username %></h1>
+<br>
 <h2>Events I'm hosting</h2>
 <ol>
   <% @sport_events.each do |event| %>
     <li><%= link_to event.sport, sport_event_path(event) %>
-    <%= event.user.username %></li>
+    <%= link_to "See requests", sport_event_requests_path(event) %></li>
   <% end %>
 </ol>
 
 <h2>Events I'm participating</h2>
 <ol>
   <% @requests.each do |request| %>
-    <li><%= link_to request.sport_event.sport, sport_event_path(request.sport_event) %>
-    <%= request.sport_event.user.username %></li>
+    <% if request.accepted %>
+      <li><%= link_to request.sport_event.sport, sport_event_path(request.sport_event) %>
+      <%= request.sport_event.user.username %><br><%= link_to "Leave event", accept_request_path(request), data: { turbo_method: :patch } %></li>
+
+    <% end %>
   <% end %>
 </ol>
 

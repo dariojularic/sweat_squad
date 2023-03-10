@@ -1,18 +1,24 @@
 class SportEventsController < ApplicationController
-
   def index
     if params[:query].present?
       @sport_events = SportEvent.where(sport: params[:query])
+      # @sport_events = SportEvent.where("location ILIKE :query AND sport ILIKE :query", query: "%#{params[:query]}%")
+
     else
       @sport_events = SportEvent.all
+      # @sport_events = SportEvent.where.not(user: current_user)
     end
   end
 
   def show
     @sport_event = SportEvent.find(params[:id])
     @request = Request.new
+    @user_request = Request.find_by(user: current_user, sport_event: @sport_event)
+    @user_ids = @sport_event.requests.where(accepted: true).pluck(:user_id)
+    @users = User.where(id: @user_ids)
+
     # @message = Message.new
-    # @review = Review.new
+    @review = Review.new
   end
 
   def new
@@ -58,6 +64,6 @@ class SportEventsController < ApplicationController
   private
 
   def sport_event_params
-    params.require(:sport_event).permit(:address, :start_at, :sport, :description)
+    params.require(:sport_event).permit(:address, :start_at, :sport, :description, :image)
   end
 end
