@@ -21,7 +21,10 @@
     <div class= "card">
       <img src=<%= asset_path "1.jpg" %>>
         <ul>
-          <li><%= link_to request.sport_event.sport, sport_event_path(request.sport_event) %></li>
+          <% if request.accepted %>
+            <li><%= link_to request.sport_event.sport, sport_event_path(request.sport_event) %></li>
+            <%= request.sport_event.user.username %><br><%= link_to "Leave event", accept_request_path(request), data: { turbo_method: :patch } %></li>
+          <% end %>
           <li><%= request.sport_event.user.username %></li>
           <li style="list-style-type: none;"><%= event.address %></li>
           <li style="list-style-type: none;"><%= event.start_at %></li>
@@ -29,6 +32,4 @@
       </div>
     <% end %>
 </div>
-
-
 <%= link_to "List of events", sport_events_path %>

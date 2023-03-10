@@ -1,7 +1,11 @@
 <h1>This is index for requests</h1>
 <ul>
   <% @requests.each do |request| %>
-    <li><%= request.message %></li>
-    <li><%= request.user.username %></li>
+    <% if request.accepted == false %>
+      <li><%= request.user.username %><br>
+      <%= request.message %></li>
+      <%= link_to "Accept", accept_request_path(request), data: { turbo_method: :patch } %>
+      <%= button_to "Decline", request, data: { turbo_method: :delete } %>
+    <% end %>
   <% end %>
 </ul>
