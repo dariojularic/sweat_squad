@@ -4,7 +4,7 @@ class PagesController < ApplicationController
   def home
     @user = current_user
     if @user
-    @sport_events = @user.sport_events
+    @sport_events = SportEvent.all
     end
   end
 

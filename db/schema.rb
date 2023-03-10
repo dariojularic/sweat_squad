@@ -14,16 +14,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_09_145340) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "invitations", force: :cascade do |t|
-    t.boolean "accepted"
-    t.bigint "user_id", null: false
-    t.bigint "sport_event_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["sport_event_id"], name: "index_invitations_on_sport_event_id"
-    t.index ["user_id"], name: "index_invitations_on_user_id"
-  end
-
   create_table "messages", force: :cascade do |t|
     t.text "content"
     t.bigint "user_id", null: false
@@ -85,8 +75,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_09_145340) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "invitations", "sport_events"
-  add_foreign_key "invitations", "users"
   add_foreign_key "messages", "sport_events"
   add_foreign_key "messages", "users"
   add_foreign_key "requests", "sport_events"

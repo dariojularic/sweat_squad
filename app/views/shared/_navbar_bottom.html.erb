@@ -1,9 +1,7 @@
 <div class="navfooter">
   <div class="flex-container">
-      <a href="#"><i class="navfooter-links fa-regular fa-calendar-days"></i></a>
-      <a href="#"><i class="navfooter-links fa-regular fa-comments"></i></a>
-      <a href="#"><i class="navfooter-links fa-solid fa-circle-plus"></i></a>
-      <a href="#"><i class="navfooter-links fa-regular fa-envelope"></i></a>
+      <%= link_to sport_events_path do %><i class="navfooter-links fa-regular fa-calendar-days"></i><% end %>
+      <%= link_to new_sport_event_path do %><i class="navfooter-links fa-solid fa-circle-plus"></i><% end %>
+      <%= link_to dashboard_path do %><i class="navfooter-links fa-regular fa-user"></i><% end %>
   </div>
 </div>
-
