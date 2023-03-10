@@ -3,44 +3,44 @@
     <div class="homepagetop">
       <p class= "hpw"><%= "Hi #{current_user&.username} 🖐"%></p>
       <p class= "hpw2">Welcome to the home page</p>
-      <form novalidate="novalidate" class="simple_form search" action="/" accept-charset="UTF-8" method="get">
+
+      <form novalidate="novalidate" class="simple_form search" action="/sport_events" accept-charset="UTF-8" method="GET">
         <div class="search-form-control form-group">
-          <input class="form-control string required" type="text" name="search[query]" id="search_query" />
+          <input class="form-control string required" type="text" name="query" id="search_query" />
           <button name="button" type="submit" class="btn btn-flat">
             <i class="fas fa-search"></i> Search
           </button>
         </div>
       </form>
-      <p class= "hpw3">Checkout the Latest events below</p>
+     <p class= "hpw3">Checkout the Latest events below</p>
     </div>
 
-    <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <% @sport_events.each_slice(2).map.each do |event| %>
-          <div class="carousel-item active" data-bs-interval="3000">
-            <div class= "d-flex">
+  <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <% @sport_events.each_slice(2).map.each do |event| %>
+        <div class="carousel-item active" data-bs-interval="3000">
+          <div class= "d-flex">
+            <div class= "card">
+              <img src=<%= asset_path "1.jpg" %>>
+              <ul>
+                <li style="list-style-type: none;"><%= event[0].sport %></li>
+                <li style="list-style-type: none;"><%= event[0].address %></li>
+                <li style="list-style-type: none;"><%= event[0].start_at %></li>
+              </ul>
+            </div>
+            <% if event[1] %>
               <div class= "card">
                 <img src=<%= asset_path "1.jpg" %>>
                 <ul>
-                  <li style="list-style-type: none;"><%= event[0].sport %></li>
-                  <li style="list-style-type: none;"><%= event[0].address %></li>
-                  <li style="list-style-type: none;"><%= event[0].start_at %></li>
+                  <li style="list-style-type: none;"><%= event[1].sport %></li>
+                  <li style="list-style-type: none;"><%= event[1].address %></li>
+                  <li style="list-style-type: none;"><%= event[1].start_at %></li>
                 </ul>
               </div>
-              <% if event[1] %>
-                <div class= "card">
-                  <img src=<%= asset_path "1.jpg" %>>
-                  <ul>
-                    <li style="list-style-type: none;"><%= event[1].sport %></li>
-                    <li style="list-style-type: none;"><%= event[1].address %></li>
-                    <li style="list-style-type: none;"><%= event[1].start_at %></li>
-                  </ul>
-                </div>
-              <% end %>
-            </div>
+            <% end %>
           </div>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     </div>
   </div>
 <% else %>

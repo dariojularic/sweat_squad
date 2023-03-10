@@ -1,12 +1,11 @@
 class SportEventsController < ApplicationController
   def index
     if params[:query].present?
-      @sport_events = SportEvent.where(sport: params[:query])
-      # @sport_events = SportEvent.where("location ILIKE :query AND sport ILIKE :query", query: "%#{params[:query]}%")
-
+      @sql_results = SportEvent.where("address ILIKE ?", "%#{params[:query]}%")
+      @sport_events = @sql_results.select { |sport_event| sport_event.user != current_user }
+      # raise
     else
       @sport_events = SportEvent.all
-      # @sport_events = SportEvent.where.not(user: current_user)
     end
   end
 
