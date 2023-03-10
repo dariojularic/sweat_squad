@@ -1,6 +1,16 @@
+.navbar {
+width: 100%;
+z-index: 100;
+position:sticky;
+top: 0;
+overflow: visible;
+}
+
+
 .navbar-lewagon {
   justify-content: space-between;
   background: red;
+
 }
 
 .navbar-lewagon .navbar-collapse {

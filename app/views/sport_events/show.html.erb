@@ -1,4 +1,7 @@
-<h1>Show page</h1>
+
+<h1 class= "showpageh1"><%= @sport_event.sport %></h1>
+
+
 <div class= "cardshow_container">
   <div class= "cardshow">
     <img src=<%= asset_path "1.jpg" %>>
@@ -26,7 +29,7 @@
 <% if current_user != @sport_event.user && (@user_request.nil? || !@user_request.accepted) %> <%# display only if the user hasnt sent a request yet %>
   <%= simple_form_for [@sport_event, @request] do |f| %>
     <%= f.input :message %>
-    <%= f.submit %>
+    <%= f.button :submit, "Send Message"%>
   <% end %>
 <% end %>
 
@@ -53,9 +56,9 @@
 <% end %>
 
 <%# This code is for cloudinary %>
-
+<%#
 <% image_sport_event = "https://res.cloudinary.com/dc5dpsxvz/image/upload/v1678396660/SweatSquad/moises-alex-WqI-PbYugn4-unsplash_ukmeaf.jpg" %>
 
-<div class="square">
-  <img src="<%= image_sport_event %>" alt="sport-event-image" class="thumbnail">
-</div>
+<%# <div class="square"> %>
+  <%# <img src="<%= image_sport_event %>
+<%# </div> %>
