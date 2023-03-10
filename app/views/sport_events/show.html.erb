@@ -1,11 +1,19 @@
 <h1>Show page</h1>
-<ul>
-  <li><%= @sport_event.address %></li>
-  <li><%= @sport_event.sport %></li>
-  <li><%= @sport_event.start_at %></li>
-  <li><%= @sport_event.description %></li>
-  <li><%= @sport_event.user.username %></li>
-</ul>
+<div class= "cardshow_container">
+  <div class= "cardshow">
+    <img src=<%= asset_path "1.jpg" %>>
+      <div class= "event_info">
+        <ul>
+          <li style="list-style-type: none;"><p><%= @sport_event.user.username %></p></li>
+          <li style="list-style-type: none;"><p><%= @sport_event.sport %></p></li>
+          <li style="list-style-type: none;"><p><%= @sport_event.address %></p></li>
+          <li style="list-style-type: none;"><p><%= @sport_event.description %></p></li>
+          <li style="list-style-type: none;"><p><%= @sport_event.start_at %></p></li>
+        </ul>
+      </div>
+  </div>
+</div>
+
 <%= simple_form_for [@sport_event, @request] do |f| %>
   <%= f.input :message %>
   <%= f.submit %>

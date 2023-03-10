@@ -4,6 +4,8 @@
     <div class= "card">
       <img src=<%= asset_path "1.jpg" %>>
       <ul>
+      <li style="list-style-type: none;"><%= link_to event.sport, sport_event_path(event) %>
+        <li style="list-style-type: none;"><%= event.user.username %></li>
         <li style="list-style-type: none;"><%= event.sport %></li>
         <li style="list-style-type: none;"><%= event.address %></li>
         <li style="list-style-type: none;"><%= event.start_at %></li>
