@@ -20,45 +20,44 @@
 
 
 <div>
-<ol>
-  <% @sport_event.requests.each do |request| %>
-    <% if request.accepted == false %>
-      <p></i><%= request.user.username %><br><%= request.message %></p>
+  <ol>
+    <% @sport_event.requests.each do |request| %>
+      <% if request.accepted == false %>
+        <p></i><%= request.user.username %><br><%= request.message %></p>
+      <% end %>
     <% end %>
-  <% end %>
-</ol>
+  </ol>
 </div>
 
-<hr>
+<div class= "container">
+    <% if current_user != @sport_event.user && (@user_request.nil?) %>
+    <%# display only if the user hasnt sent a request yet %>
+      <%= simple_form_for [@sport_event, @request] do |f| %>
+        <%= f.input :message %>
+        <center><%= f.button :submit, "Request to join" %></center>
+      <% end %>
+  <% end %>
+</div>
+
+
 
 <div class= "container">
-<% if current_user == @sport_event.user && (@user_request.nil? || !@user_request.accepted) %> <%# display only if the user hasnt sent a request yet %>
-  <%= simple_form_for [@sport_event, @request] do |f| %>
-    <%= f.input :message %>
-    <center><%= f.button :submit, "Send Message" %></center>
-  <% end %>
+    <% if current_user != @sport_event.user %>
+      <%= simple_form_for [@sport_event, @review] do |f| %>
+          <%= f.input :rating %>
+          <%= f.input :content %>
+          <center><%= f.button :submit, "Create a review", class: 'btn btn-success'%></center>
+    <% end %>
 <% end %>
 </div>
 
-<hr>
 
-<div class= "container">
-<% if current_user != @sport_event.user %>
-  <%= simple_form_for [@sport_event, @review] do |f| %>
-      <%= f.input :rating %>
-      <%= f.input :content %>
-      <center><%= f.button :submit, "Create a review", class: 'btn btn-success'%></center>
-  <% end %>
-<% end %>
-</div>
-
-<hr>
 
 <div class= "showpage-edit-delete-btns">
   <% if current_user == @sport_event.user %>
     <%= link_to "Update", edit_sport_event_path(@sport_event), class: 'btn btn-success' %>
     <%= link_to 'Delete', @sport_event, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this event?" }, class: 'btn btn-danger' %>
+  <% else %>
+    <%# <%= link_to "Request to join", sport_event_requests_path(@sport_event), class: 'btn btn-success' %> 
   <% end %>
-
-  <%= button_to "Request to join", sport_event_requests_path(@sport_event) %>
 </div>
