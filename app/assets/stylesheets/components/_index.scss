@@ -2,18 +2,29 @@
 @import "alert";
 @import "avatar";
 @import "form_legend_clear";
-@import "navbar";
+@import "homescreenimage";
+@import "hr";
+
+// Homepage scss files
 @import "body";
-@import "carousel";
 @import "homepage";
+@import "navbar";
+@import "homepagetop";
+@import "search-form-control";
+@import "carousel";
+@import "navbar_bottom";
+
+// Index/List page scss files
 @import "card";
-@import "cards";
+
+// Show page scss files
+
+
 @import "form_control";
 @import "chatroom";
-@import "navbar_bottom";
-@import "homepagetop";
-@import "hpw";
-@import "search-form-control";
-@import "homescreenimage";
+
+
+
+
 @import "cardshow";
 @import "showpageh1";

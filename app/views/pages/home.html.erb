@@ -12,37 +12,59 @@
           </button>
         </div>
       </form>
+
      <p class= "hpw3">Checkout the Latest events below</p>
-    </div>
+   </div>
 
   <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
       <% @sport_events.each_slice(2).map.each do |event| %>
         <div class="carousel-item active" data-bs-interval="3000">
           <div class= "d-flex">
-            <div class= "card">
-              <img src=<%= asset_path "1.jpg" %>>
-              <ul>
-                <li style="list-style-type: none;"><%= event[0].sport %></li>
-                <li style="list-style-type: none;"><%= event[0].address %></li>
-                <li style="list-style-type: none;"><%= event[0].start_at %></li>
-              </ul>
+
+            <div class= "cards">
+                <div class="card">
+                  <div class="card-text">
+                    <h2><%= event[0].sport %></h2>
+                    <p><%= event[0].address %></p>
+                  </div>
+                </div>
             </div>
+
             <% if event[1] %>
-              <div class= "card">
-                <img src=<%= asset_path "1.jpg" %>>
-                <ul>
-                  <li style="list-style-type: none;"><%= event[1].sport %></li>
-                  <li style="list-style-type: none;"><%= event[1].address %></li>
-                  <li style="list-style-type: none;"><%= event[1].start_at %></li>
-                </ul>
-              </div>
+
+            <div class= "cards">
+                <div class="card">
+                  <div class="card-text">
+                    <h2><%= event[1].sport %></h2>
+                    <p><%= event[1].address %></p>
+                  </div>
+                </div>
+            </div>
+
+            <% if event[1] %>
+
+              <div class= "cards">
+                <div class="card">
+                  <div class="card-text">
+                    <h2><%= event[1].sport %></h2>
+                    <p><%= event[1].address %></p>
+                  </div>
+                </div>
+            </div>
+            <% end %>
+
             <% end %>
           </div>
         </div>
       <% end %>
     </div>
   </div>
+
+
+
+
 <% else %>
-  <img class= "homescreenimage" src=<%= asset_path "1.jpg"%>>
+  <img class= "homescreenimage" src=<%= asset_path "Homescreenimage.jpg"%>>
 <% end %>
+
