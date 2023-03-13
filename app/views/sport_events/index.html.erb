@@ -6,10 +6,9 @@
     <div class="card">
       <div class="card-text">
         <h2><%= link_to event.sport, sport_event_path(event), class: 'no-link' %></h2>
-        <p><%= event.address %></p>
+        <p><%= event.city_name %></p>
         <%# <p><%= event.user.username %></p>
       </div>
     </div>
   <% end %>
 </div>
-
