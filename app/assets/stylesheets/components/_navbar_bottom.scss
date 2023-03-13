@@ -1,22 +1,24 @@
 .navfooter {
-position: fixed;
-bottom: 0;
-width: 100%;
-text-align: center;
-background-color: blue;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  background-color: blue;
+  border-top-right-radius: 12px;
+  border-top-left-radius: 12px;
 }
 
 .flex-container {
-display: flex;
-justify-content: space-evenly;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .navfooter-links {
-font-size: 20px;
-padding: 20px;
-color: yellow;
+  font-size: 20px;
+  padding: 20px;
+  color: yellow;
 }
 
 .footer-buffer {
-min-height: 60px;
+  min-height: 60px;
 }

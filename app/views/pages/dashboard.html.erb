@@ -1,40 +1,37 @@
-<h1>My dashboard</h1>
-<h2>About Me</h2>
-<%# simple_form_for(@user) do |f| %>
-  <%# f.input :about_me %>
-  <%# f.submit %>
-<%# <% end %> %>
-<h2>Events I'm hosting</h2>
 <div class= "cards">
+<hr>
+  <center><h1>My dashboard</h1></center>
+<hr>
+<h4 style= "margin-left: 18px; margin-bottom: 18px;">Events I'm hosting</h4>
+
+
+  <div class= "cards">
     <% @sport_events.each do |event| %>
+      <div class="card">
+        <div class="card-text">
+          <h2><%= link_to event.sport, sport_event_path(event), class: 'no-link' %></h2>
+          <p><%= event.address %></p>
+          <%# <p><%= event.user.username %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+
+<hr>
+<h4 style= "margin-left: 18px; margin-bottom: 18px;">Events I've joined
+
+<div class= "container">
+  <div class= "cards">
+    <% @requests.each do |request| %>
       <div class= "card">
-        <img src=<%= asset_path "1.jpg" %>>
-        <ul>
-          <li style="list-style-type: none;"><%= event.user.username %></li>
-          <li style="list-style-type: none;"><%= link_to event.sport, sport_event_path(event) %>
-          <li style="list-style-type: none;"><%= event.address %></li>
-          <li style="list-style-type: none;"><%= event.start_at %></li>
-        </ul>
-      </div>
-    <% end %>
+        <div class="card-text">
+            <% if request.accepted %>
+              <p><%= link_to request.sport_event.sport, sport_event_path(request.sport_event), class: 'no-link' %></p>
+              <%= request.sport_event.user.username %><br><%= link_to "Leave event", accept_request_path(request), data: { turbo_method: :patch } %></li>
+            <% end %>
+            <p><%= request.sport_event.address %></p>
+        </div>
+      <% end %>
+  </div>
 </div>
-
-<h2>Events I'm participating</h2>
-
-<div class= "cards">
-  <% @requests.each do |request| %>
-    <div class= "card">
-      <img src=<%= asset_path "1.jpg" %>>
-        <ul>
-          <% if request.accepted %>
-            <li><%= link_to request.sport_event.sport, sport_event_path(request.sport_event) %></li>
-            <%= request.sport_event.user.username %><br><%= link_to "Leave event", accept_request_path(request), data: { turbo_method: :patch } %></li>
-          <% end %>
-          <li><%= request.sport_event.user.username %></li>
-          <li style="list-style-type: none;"><%= request.sport_event.address %></li>
-          <li style="list-style-type: none;"><%= request.sport_event.start_at %></li>
-        </ul>
-      </div>
-    <% end %>
-</div>
-<%= link_to "List of events", sport_events_path %>

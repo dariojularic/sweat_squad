@@ -1,20 +1,29 @@
 // Import your components CSS files here.
 @import "alert";
 @import "avatar";
-@import "form_legend_clear";
-@import "navbar";
-@import "body";
-@import "carousel";
-@import "homepage";
-@import "card";
-@import "cards";
 @import "form_control";
-@import "chatroom";
-@import "navbar_bottom";
-@import "homepagetop";
-@import "hpw";
-@import "search-form-control";
+@import "form_legend_clear";
 @import "homescreenimage";
 @import "cardshow";
 @import "showpageh1";
 @import "map";
+@import "hr";
+
+// Homepage scss files
+@import "body";
+@import "homepage";
+@import "navbar";
+@import "homepagetop";
+@import "search-form-control";
+@import "carousel";
+@import "navbar_bottom";
+
+// Index/List page scss files
+@import "card";
+
+// Show page scss files
+@import "show-card";
+
+
+// Chatroom scss file(s)
+@import "chatroom";

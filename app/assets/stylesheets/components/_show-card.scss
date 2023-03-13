@@ -1,0 +1,39 @@
+.show-card {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 2px;
+  justify-items: center;
+  height: 300px;
+  width: auto;
+  border: 2px solid gray;
+  border-bottom-right-radius: 24px;
+  border-top-left-radius: 24px;
+  background-color: white;
+}
+
+.show-card .show-card-image {
+  width: 200px;
+  height: 100px;
+  margin-top: 12px;
+  background-image: url(2.jpg);
+  background-size: 100% 100%;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+}
+
+.show-card .show-card-text {
+  width: 350px;
+  height: 150px;
+  background-color: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.show-card .show-card-text p {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  margin-left: 10px;
+  font-size: 12px;
+}

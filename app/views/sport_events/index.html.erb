@@ -1,15 +1,15 @@
-<center><h1>List of events</h1></center>
+<hr>
+<center><h1 class="h1-headers">Current Events Available</h1></center>
+<hr>
 <div class= "cards">
   <% @sport_events.each do |event| %>
-    <div class= "card">
-      <img src=<%= asset_path "1.jpg" %>>
-      <ul>
-      <li style="list-style-type: none;"><%= link_to event.sport, sport_event_path(event) %>
-        <li style="list-style-type: none;"><%= event.user.username %></li>
-        <li style="list-style-type: none;"><%= event.sport %></li>
-        <li style="list-style-type: none;"><%= event.address %></li>
-        <li style="list-style-type: none;"><%= event.start_at %></li>
-      </ul>
+    <div class="card">
+      <div class="card-text">
+        <h2><%= link_to event.sport, sport_event_path(event), class: 'no-link' %></h2>
+        <p><%= event.address %></p>
+        <%# <p><%= event.user.username %></p>
+      </div>
     </div>
   <% end %>
 </div>
+
