@@ -12,4 +12,9 @@ class SportEvent < ApplicationRecord
   validates :sport, presence: true
   validates :sport, inclusion: { in: SPORTS }
   # has_one_attached :image
+
+  def city_name
+    address.split(",").first
+  end
+
 end
