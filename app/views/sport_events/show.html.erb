@@ -39,6 +39,8 @@
 
 <% if (@user_request && @user_request.accepted) || (@sport_event.user == current_user) %>
   <%= link_to "Go to chat", chat_sport_event_path(@sport_event) %>
+  <%# link_to "Cancel attendance", accept_request_path(@user_request), data: { turbo_method: :delete } %>
+  <%# after canceling attendance we want to stay on that page or go to index %>
 <% end %>
 
 

@@ -14,7 +14,7 @@ class ReviewsController < ApplicationController
     @review.user = current_user
     @review.sport_event = @sport_event
     if @review.save
-      raise
+      # raise
       redirect_to sport_event_path(@sport_event)
     else
       render "sport_events/show", status: :unprocessable_entity
