@@ -4,6 +4,11 @@ hr {
   margin-right: 8%;
   margin-top: 12px;
   margin-bottom: 12px;
-  background-color: gray;
+  background-color: $light-gray;
   height: 2px;
+}
+
+.h1-headers {
+  font-size: 22px;
+  color: $dark-gray;
 }

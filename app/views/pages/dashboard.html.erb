@@ -18,19 +18,19 @@
 
 
 <hr>
-<h4 style= "margin-left: 18px; margin-bottom: 18px;">Events I've joined
+<h4 style= "margin-left: 18px; margin-bottom: 18px;">Events I've joined</h4>
 
-<div class= "container">
   <div class= "cards">
     <% @requests.each do |request| %>
       <div class= "card">
         <div class="card-text">
             <% if request.accepted %>
-              <p><%= link_to request.sport_event.sport, sport_event_path(request.sport_event), class: 'no-link' %></p>
+              <h2><%= link_to request.sport_event.sport, sport_event_path(request.sport_event), class: 'no-link' %></h2>
               <%= request.sport_event.user.username %><br><%= link_to "Leave event", accept_request_path(request), data: { turbo_method: :patch } %></li>
             <% end %>
             <p><%= request.sport_event.address %></p>
+            <p>Not accepted yet</p>
         </div>
+      </div>
       <% end %>
   </div>
-</div>

@@ -24,16 +24,28 @@
   border-radius: 12px;
 }
 
+.show-card-image h1 {
+  position: absolute;
+  width: 40%;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-top-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  color: white;
+}
+
 .show-card .show-card-text {
-  width: 350px;
+  width: 300px;
   height: 150px;
   background-color: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  box-shadow: 0 0 4px rgba(0,0,0,0.2);
 }
 
 .show-card .show-card-text p {
-  margin-top: 4px;
+  margin-top: 2px;
   margin-bottom: 4px;
   margin-left: 10px;
   font-size: 12px;
+  color: $light-gray;
 }
+
