@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: "pages#home"
   get "dashboard", to: "pages#dashboard"
   get "profile/:user_id", to: "pages#profile", as: :profile # missing ID
+  get "account", to: "pages#account", as: :account
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

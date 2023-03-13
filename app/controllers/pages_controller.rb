@@ -29,9 +29,14 @@ class PagesController < ApplicationController
     @sport_events = @user.sport_events
   end
 
-  # private
+  def account
+    @user = current_user
 
-  # def user_params
-  #   params.require(:user).permit(:about_me)
-  # end
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:about_me, :photo)
+  end
 end
