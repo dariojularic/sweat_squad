@@ -8,7 +8,7 @@
 
   .navbar-lewagon {
     justify-content: space-between;
-    background: red;
+    background-color: red;
   }
 
   .navbar-lewagon .navbar-collapse {
@@ -20,11 +20,11 @@
   }
 
   .bg-blue {
-    background-color: blue;
+    background-color: $blue;
   }
 
   .nav-link {
-    color: yellow;
+    color: white;
   }
 
   .nav-link2 {
