@@ -1,55 +1,63 @@
-
-<h1 class= "showpageh1"><%= @sport_event.sport %></h1>
-
-
-<div class= "cardshow_container">
-  <div class= "cardshow">
-    <img src=<%= asset_path "1.jpg" %>>
-      <div class= "event_info">
-        <ul>
-          <li style="list-style-type: none;"><p><%= link_to @sport_event.user.username, profile_path(@sport_event.user.id) %></p></li>
-          <li style="list-style-type: none;"><p><%= @sport_event.sport %></p></li>
-          <li style="list-style-type: none;"><p><%= @sport_event.address %></p></li>
-          <li style="list-style-type: none;"><p><%= @sport_event.description %></p></li>
-          <li style="list-style-type: none;"><p><%= @sport_event.start_at.strftime("%d %B %Y %H:%M") %></p></li>
-        </ul>
-      </div>
+<hr>
+<center><h2>Event Hosted By <%=@sport_event.user.username%></h2></center>
+<hr>
+<div class= "container">
+  <div class= "show-card">
+    <div class= "show-card-image">
+      <h1><%= @sport_event.sport.capitalize %></h1>
+    </div>
+    <div class= "show-card-text">
+      <p>Click <%= link_to @sport_event.user.username, profile_path(@sport_event.user.id) %> to see their profile</p>
+      <p>Location:   <%= @sport_event.address %></p>
+      <p>Additional Info:   <%= @sport_event.description %></p>
+      <p>Date:   <%= @sport_event.start_at.strftime("%d %B %Y") %></p>
+      <p>Time:   <%= @sport_event.start_at.strftime("%H:%M") %></p>
+        <% if (@user_request && @user_request.accepted) || (@sport_event.user != current_user) %>
+      <p>Enter into a  <%= link_to chat_sport_event_path(@sport_event) do %><i class="fa-regular fa-comments"></i><%end%>  with <%=@sport_event.user.username%></p><%end%>
+    </div>
   </div>
 </div>
 
+
+<div>
 <ol>
   <% @sport_event.requests.each do |request| %>
     <% if request.accepted == false %>
-      <li><%= request.user.username %><br><%= request.message %></li>
+      <p></i><%= request.user.username %><br><%= request.message %></p>
     <% end %>
   <% end %>
 </ol>
+</div>
 
+<hr>
 
-<% if current_user != @sport_event.user && (@user_request.nil? || !@user_request.accepted) %> <%# display only if the user hasnt sent a request yet %>
+<div class= "container">
+<% if current_user == @sport_event.user && (@user_request.nil? || !@user_request.accepted) %> <%# display only if the user hasnt sent a request yet %>
   <%= simple_form_for [@sport_event, @request] do |f| %>
     <%= f.input :message %>
-    <%= f.button :submit, "Send Message"%>
+    <center><%= f.button :submit, "Send Message" %></center>
   <% end %>
 <% end %>
+</div>
 
-<%= link_to "Home", root_path %>
-<%= link_to "Dashboard", dashboard_path %>
-<%= link_to "List of events", sport_events_path %>
+<hr>
 
-<% if (@user_request && @user_request.accepted) || (@sport_event.user == current_user) %>
-  <%= link_to "Go to chat", chat_sport_event_path(@sport_event) %>
+<div class= "container">
+<% if current_user != @sport_event.user %>
+  <%= simple_form_for [@sport_event, @review] do |f| %>
+      <%= f.input :rating %>
+      <%= f.input :content %>
+      <center><%= f.button :submit, "Create a review"%></center>
+  <% end %>
 <% end %>
+</div>
 
+<hr>
 
-<%= simple_form_for [@sport_event, @review] do |f| %>
-    <%= f.input :rating %>
-    <%= f.input :content %>
-    <%= f.submit %>
-<% end %>
-
-<% if current_user == @sport_event.user %>
-  <%= link_to "Requests", sport_event_requests_path(@sport_event) %>
-  <%= link_to "Update event", edit_sport_event_path(@sport_event) %>
-  <%= button_to 'Delete Post', @sport_event, method: :delete %>
-<% end %>
+<div class= "d-flex">
+  <% if current_user == @sport_event.user %>
+    <%= link_to "Update event", edit_sport_event_path(@sport_event)%>
+    <%= link_to 'Delete Post', @sport_event, method: :delete %>
+  <% end %>
+  <%= button_to "Request to join", sport_event_requests_path(@sport_event) %>
+</div>
