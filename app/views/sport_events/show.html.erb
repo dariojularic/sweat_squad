@@ -1,5 +1,5 @@
 <hr>
-<center><h2>Event Hosted By <%=@sport_event.user.username%></h2></center>
+<center><h2>Hosted By <%=@sport_event.user.username%></h2></center>
 <hr>
 <div class= "container">
   <div class= "show-card">
@@ -7,7 +7,7 @@
       <h1><%= @sport_event.sport.capitalize %></h1>
     </div>
     <div class= "show-card-text">
-      <p><i class="showpage-icons fa-regular fa-user"></i><%= link_to @sport_event.user.username, profile_path(@sport_event.user.id) %></p>
+      <p><i class="showpage-icons fa-regular fa-user"></i><%= link_to @sport_event.user.username, profile_path(@sport_event.user.id) %>'s profile</p>
       <p><i class="showpage-icons fa-solid fa-location-dot"></i><%= @sport_event.address %></p>
       <p><i class="showpage-icons fa-solid fa-circle-info"></i><%= @sport_event.description %></p>
       <p><i class="showpage-icons fa-regular fa-calendar-days"></i><%= @sport_event.start_at.strftime("%d %B %Y") %></p>
@@ -47,17 +47,18 @@
   <%= simple_form_for [@sport_event, @review] do |f| %>
       <%= f.input :rating %>
       <%= f.input :content %>
-      <center><%= f.button :submit, "Create a review"%></center>
+      <center><%= f.button :submit, "Create a review", class: 'btn btn-success'%></center>
   <% end %>
 <% end %>
 </div>
 
 <hr>
 
-<div class= "d-flex">
+<div class= "showpage-edit-delete-btns">
   <% if current_user == @sport_event.user %>
-    <%= link_to "Update event", edit_sport_event_path(@sport_event)%>
-    <%= link_to 'Delete Post', @sport_event, method: :delete %>
+    <%= link_to "Update", edit_sport_event_path(@sport_event), class: 'btn btn-success' %>
+    <%= link_to 'Delete', @sport_event, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this event?" }, class: 'btn btn-danger' %>
   <% end %>
+
   <%= button_to "Request to join", sport_event_requests_path(@sport_event) %>
 </div>

@@ -1,22 +1,22 @@
 .cards {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  column-gap: 10px;
-  row-gap: 15px;
+  column-gap: 8px;
+  row-gap: 8px;
   justify-items: center;
   width: 100%;
   margin-top: 8px;
 }
 
 .card {
-  height: 120px;
-  width: 120px;
+  height: 110px;
+  width: 110px;
   border-radius: 50%;
-  box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, .4);
+  box-shadow: 0px 0px 6px 0 rgba(0, 0, 0, .4);
   background-image: url(2.jpg);
   background-size: cover;
   border: none;
-  border: 1px solid rgb(14, 183, 189);
+  border: 1px solid $light-gray;
 }
 
 .card .card-text {
@@ -32,13 +32,13 @@
 }
 
 .card .card-text h2 {
-  font-size: 16px;
+  font-size: 14px;
   margin-bottom: 2px;
   color: white;
 }
 
 .card .card-text p {
-  font-size: 8px;
+  font-size: 10px;
   margin-bottom: 2px;
   color: white;
   font-weight: bold;
@@ -50,4 +50,3 @@
   color: inherit;
   cursor: pointer;
 }
-
