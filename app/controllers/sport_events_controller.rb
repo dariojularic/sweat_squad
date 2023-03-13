@@ -26,6 +26,8 @@ class SportEventsController < ApplicationController
 
   def create
     @sport_event = SportEvent.new(sport_event_params)
+    # raise
+    @sport_event.sport.capitalize!
     @sport_event.user = current_user
     if @sport_event.save
       redirect_to sport_event_path(@sport_event)

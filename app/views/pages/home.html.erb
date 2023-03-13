@@ -60,10 +60,23 @@
     </div>
   </div>
 
+  <div id='map' style='width: 400px; height: 300px;' data-controller="map"
+  data-map-markers-value="<%= @markers.to_json %>"
+  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+  <%# <script>
+
+
+  mapboxgl.accessToken = 'pk.eyJ1IjoiZGFyaW8wIiwiYSI6ImNsZjVlY3dpMzB1NzI0MG9jbTM0ajAzbHYifQ.tOGvT1o-qUrsNGZiPi10aA'; // replace this with your access token
+  const map = new mapboxgl.Map({
+      container: 'map', // container ID
+      style: 'mapbox://styles/mapbox/streets-v12', // style URL
+      center: [-74.5, 40], // starting position [lng, lat]
+      zoom: 9, // starting zoom
+  });
+  </script> %>
 
 
 
 <% else %>
   <img class= "homescreenimage" src=<%= asset_path "Homescreenimage.jpg"%>>
 <% end %>
-

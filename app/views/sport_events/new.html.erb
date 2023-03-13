@@ -3,12 +3,14 @@
 <hr>
 <div class= "container">
   <%= simple_form_for(@sport_event) do |f| %>
-    <%= f.input :address %>
+    <%= f.input :address,
+      input_html: {data: {address_autocomplete_target: "address"}, class: "d-none"},
+      wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
     <%= f.input :sport %>
     <%= f.input :description %>
     <%= f.input :start_at %>
+    <%= f.input :image, as: :file %>
     <hr>
     <center><%= f.submit %></center>
   <% end %>
 </div>
-
