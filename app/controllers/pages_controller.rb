@@ -5,12 +5,13 @@ class PagesController < ApplicationController
     @user = current_user
     if @user
       @sport_events = SportEvent.all
+      # raise
       @markers = @sport_events.geocoded.map do |sport_event|
         {
           lat: sport_event.latitude,
           lng: sport_event.longitude,
-          info_window_html: render_to_string(partial: "info_window", locals: { sport_event: sport_event}),
-          marker_html: render_to_string(partial: "marker")
+          info_window_html: render_to_string(partial: "shared/info_window", locals: { sport_event: sport_event}),
+          marker_html: render_to_string(partial: "shared/marker")
         }
       end
     end

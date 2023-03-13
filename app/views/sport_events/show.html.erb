@@ -7,13 +7,13 @@
       <h1><%= @sport_event.sport.capitalize %></h1>
     </div>
     <div class= "show-card-text">
-      <p>Click <%= link_to @sport_event.user.username, profile_path(@sport_event.user.id) %> to see their profile</p>
-      <p>Location:   <%= @sport_event.address %></p>
-      <p>Additional Info:   <%= @sport_event.description %></p>
-      <p>Date:   <%= @sport_event.start_at.strftime("%d %B %Y") %></p>
-      <p>Time:   <%= @sport_event.start_at.strftime("%H:%M") %></p>
+      <p><i class="showpage-icons fa-regular fa-user"></i><%= link_to @sport_event.user.username, profile_path(@sport_event.user.id) %></p>
+      <p><i class="showpage-icons fa-solid fa-location-dot"></i><%= @sport_event.address %></p>
+      <p><i class="showpage-icons fa-solid fa-circle-info"></i><%= @sport_event.description %></p>
+      <p><i class="showpage-icons fa-regular fa-calendar-days"></i><%= @sport_event.start_at.strftime("%d %B %Y") %></p>
+      <p><i class="showpage-icons fa-regular fa-clock"></i><%= @sport_event.start_at.strftime("%H:%M") %></p>
         <% if (@user_request && @user_request.accepted) || (@sport_event.user != current_user) %>
-      <p>Enter into a  <%= link_to chat_sport_event_path(@sport_event) do %><i class="fa-regular fa-comments"></i><%end%>  with <%=@sport_event.user.username%></p><%end%>
+      <p><%= link_to chat_sport_event_path(@sport_event) do %><i class="showpage-icons fa-regular fa-comments"></i><%end%>  with <%=@sport_event.user.username%></p><%end%>
     </div>
   </div>
 </div>
@@ -42,11 +42,6 @@
 
 <hr>
 
-
-<% if (@user_request && @user_request.accepted) || (@sport_event.user == current_user) %>
-  <%= link_to "Go to chat", chat_sport_event_path(@sport_event) %>
-  <%# link_to "Cancel attendance", accept_request_path(@user_request), data: { turbo_method: :delete } %>
-  <%# after canceling attendance we want to stay on that page or go to index %>
 <div class= "container">
 <% if current_user != @sport_event.user %>
   <%= simple_form_for [@sport_event, @review] do |f| %>
