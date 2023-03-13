@@ -8,12 +8,13 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @request = Request.new
+    @request = Request.new # for redirect/render
     @sport_event = SportEvent.find(params[:sport_event_id])
     @review = Review.new(review_params)
     @review.user = current_user
     @review.sport_event = @sport_event
     if @review.save
+      raise
       redirect_to sport_event_path(@sport_event)
     else
       render "sport_events/show", status: :unprocessable_entity
