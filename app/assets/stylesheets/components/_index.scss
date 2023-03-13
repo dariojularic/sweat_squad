@@ -1,6 +1,7 @@
 // Import your components CSS files here.
 @import "alert";
 @import "avatar";
+@import "form_control";
 @import "form_legend_clear";
 @import "homescreenimage";
 @import "hr";
@@ -18,13 +19,9 @@
 @import "card";
 
 // Show page scss files
+@import "show-card";
 
 
-@import "form_control";
+// Chatroom scss file(s)
 @import "chatroom";
 
-
-
-
-@import "cardshow";
-@import "showpageh1";

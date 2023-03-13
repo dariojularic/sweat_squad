@@ -1,10 +1,14 @@
-<h1>Create an Event Form</h1>
-
-<%= simple_form_for(@sport_event) do |f| %>
-  <%= f.input :address %>
-  <%= f.input :sport %>
-  <%= f.input :description %>
-  <%= f.input :start_at %>
-  <%= f.submit %>
-<% end %>
+<hr>
+  <center><h1>Create an Event Form</h1></center>
+<hr>
+<div class= "container">
+  <%= simple_form_for(@sport_event) do |f| %>
+    <%= f.input :address %>
+    <%= f.input :sport %>
+    <%= f.input :description %>
+    <%= f.input :start_at %>
+    <hr>
+    <center><%= f.submit %></center>
+  <% end %>
+</div>
 
