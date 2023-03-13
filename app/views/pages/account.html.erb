@@ -1,19 +1,16 @@
 <h1>This is <%= @user.username %> account</h1>
-<%# simple_form_for @user do %>
-  <%# f.input :about_me %>
-  <%# f.input :photo, as: :file %>
-  <%# f.submit %>
-<%# end %>
+<h2><%= @user.about_me %></h2>
+<%= link_to "Edit user", edit_user_registration_path %>
+
 <ul>
   <% @user.reviews.each do |review| %>
-    <li><%= review.rating %> <%= review.content %></li>
+    <li><%= review.rating %> <%= review.content %><%= review.user.username %></li>
   <% end %>
 </ul>
 <%# find blank avatar %>
-<%# if @user.photo.attached? %>
-  <%# image_user = cl_image_path @user.photo.key %>
-<%# else %>
-  <%# image_user = "blank avatar" %>
-<%# end %>
-<%= cl_image_tag("https://res.cloudinary.com/dc5dpsxvz/image/upload/v1678722323/rafmoyo5gyiarydohgnf.jpg",
-      width: 150, height: 150, crop: :thumb, gravity: :face) %>
+<% if @user.photo.attached? %>
+  <%= cl_image_tag(@user.photo.key, :class => "avatar-large") %>
+<% else %>
+  <img class="avatar-large" alt="avatar-large" src=<%= asset_path "avatar.png"%> />
+<% end %>
+

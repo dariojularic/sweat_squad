@@ -12,3 +12,8 @@
     </div>
   <% end %>
 </div>
+
+<%= simple_form_for :sport_event, method: :get, url: sport_events_path do |f| %>
+ <%= f.input :sport, collection: SportEvent::SPORTS %>
+ <%= f.submit %>
+<% end %>
