@@ -1,0 +1,35 @@
+
+
+
+
+
+
+<div class="navbar navbar-expand-lg navbar-light bg-blue">
+  <div class="container-fluid">
+    <div class="navbar-nav me-auto mb-2 mb-lg-0 back">
+      <%= link_to '<i class="fa-solid fa-chevron-left"></i>'.html_safe, :back, class: "nav-link" %>
+    </div>
+
+    <div>
+
+    </div>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+        </li>
+      </ul>
+
+    <div class="navbar-nav me-right mb-2 mb-lg-0">
+      <%= link_to '<i class="fa-solid fa-arrow-right-from-bracket"></i>'.html_safe, "/users/sign_out", class: "nav-link", data: {turbo_method: :delete} %>
+    </div>
+
+    <ul class="navbar-nav me-right mb-2 mb-lg-0">
+      <li class="nav-item">
+        <%=link_to "Log out", "/users/sign_out", class: "nav-link", data: {turbo_method: :delete} %>
+        <img src="" alt="">
+        <%=link_to "Home", :root, class: "nav-link" %>
+      </li>
+    </ul>
+
+
+  </div>
+</div>

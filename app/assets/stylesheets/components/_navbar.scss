@@ -6,18 +6,6 @@
   overflow: visible;
   }
 
-  .navbar-lewagon {
-    justify-content: space-between;
-    background-color: red;
-  }
-
-  .navbar-lewagon .navbar-collapse {
-    flex-grow: 0;
-  }
-
-  .navbar-lewagon .navbar-brand img {
-    width: 40px;
-  }
 
   .bg-blue {
     background-color: $blue;
@@ -27,10 +15,6 @@
     color: white;
   }
 
-  .nav-link2 {
-    color: gray;
-    text-decoration: none;
-  }
-  .avatar {
-    color: yellow;
+  .navbar i {
+    font-size: large;
   }
