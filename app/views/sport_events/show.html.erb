@@ -1,22 +1,26 @@
-<hr>
-<center><h2>Hosted By <%=@sport_event.user.username%></h2></center>
-<hr>
-<div class= "container">
-  <div class= "show-card">
-    <div class= "show-card-image">
-      <h1><%= @sport_event.sport.capitalize %></h1>
+<div class="card-trip">
+  <div class="show-img" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= @sport_event.image%>)">
+    <h5><i class="showpage-icons fa-solid fa-location-dot"></i><%= @sport_event.address %></h5>
+  </div>
+
+  <div class="card-trip-infos">
+    <div>
+      <h2>Title here</h2>
+      <p>Short description here!</p>
     </div>
-    <div class= "show-card-text">
-      <p><i class="showpage-icons fa-regular fa-user"></i><%= link_to @sport_event.user.username, profile_path(@sport_event.user.id) %>'s profile</p>
-      <p><i class="showpage-icons fa-solid fa-location-dot"></i><%= @sport_event.address %></p>
-      <p><i class="showpage-icons fa-solid fa-circle-info"></i><%= @sport_event.description %></p>
-      <p><i class="showpage-icons fa-regular fa-calendar-days"></i><%= @sport_event.start_at.strftime("%d %B %Y") %></p>
-      <p><%= current_user.username %><i class="showpage-icons fa-regular fa-clock"></i><%= @sport_event.start_at.strftime("%H:%M") %></p>
-        <% if (@user_request && @user_request.accepted) || (@sport_event.user == current_user) %>
-      <p><%= link_to chat_sport_event_path(@sport_event) do %><i class="showpage-icons fa-regular fa-comments"></i><%end%>  with <%=@sport_event.user.username%></p><%end%>
+    <div>
+      <h4 class="card-trip-pricing"><i class="showpage-icons fa-regular fa-calendar-days"></i><%= @sport_event.start_at.strftime("%d %B") %></h4>
+      <h4 class="card-trip-pricing"><i class="showpage-icons fa-regular fa-clock"></i><%= @sport_event.start_at.strftime("%d %B") %></h4>
     </div>
+    <% if @sport_event.user.photo.attached? %>
+      <%= cl_image_tag(@sport_event.user.photo.key, :class => "reviewer-pic avatar-bordered") %>
+    <% else %>
+      <img class="reviewer-pic avatar-bordered" alt="avatar-large" src=<%= asset_path "avatar.png"%> />
+    <% end %>
   </div>
 </div>
+
+<%= link_to "host", profile_path(@sport_event.user) %>
 
 
 <div>

@@ -1,18 +1,40 @@
-<hr>
-  <center><h1>My dashboard</h1></center>
-<hr>
-<h4>Events I'm hosting</h4>
+<div class="dashboard-profile">
+  <div class="dashboard-img">
+    <% if @user.photo.attached? %>
+      <%= cl_image_tag(@user.photo.key, :class => "reviewer-pic") %>
+    <% else %>
+      <img class="reviewer-pic" alt="avatar-large" src=<%= asset_path "avatar.png"%> />
+    <% end %>
+  </div>
+  
+  <div class="user-name">
+    <h3>Hello, <strong><%= @user.username %></strong></h3>
+  </div>
+</div>
+<div>
+  <h4>Events you are hosting</h4>
+</div>
 
 
-  <div class= "cards">
+  <div class= "cards p-2">
     <% @sport_events.each do |event| %>
-      <div class="card">
-        <div class="card-text">
-          <h2><%= link_to event.sport, sport_event_path(event), class: 'no-link' %></h2>
-          <p><%= event.address %></p>
-          <%# <p><%= event.user.username %></p>
+      <%= link_to sport_event_requests_path(event), class: "text-decoration-none" do %>
+        <div class="card-product my-2">
+          <img src="<%= event.image %>" />
+          <div class="d-flex" style="justify-content: space-between; flex-grow: 1;">
+            <div class="card-product-infos p-1" id="request-details">
+              <h3 class="text-decoration-transparent"><%= event.sport %></h3>
+              <h2>Request (<%= event.requests.where(accepted: false).count %>)</h2>
+              <h5><i class="showpage-icons fa-solid fa-location-dot"></i><%= event.address %></h5>
+            </div>
+
+            <div class="date-location">
+              <h5><i class="showpage-icons fa-regular fa-calendar-days"></i><%= event.start_at.strftime("%d %B") %></h5> <%# needs some polishing  %>
+              <h5><i class="showpage-icons fa-regular fa-clock"></i><%= event.start_at.strftime("%H:%M") %></h5>
+            </div>
+          </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
   </div>
 
@@ -34,4 +56,3 @@
       </div>
       <% end %>
   </div>
-

@@ -11,5 +11,6 @@ class User < ApplicationRecord
   # validates :first_name, presence: true, length: { minimum: 2 }
   # validates :last_name, presence: true, length: { minimum: 2 }
   validates :username, presence: true, uniqueness: { message: "already exists" }, length: { minimum: 2 }
+  validates :about_me, length: { minimum: 15, maximum: 80 }
   has_one_attached :photo
 end

@@ -1,6 +1,7 @@
 class RequestsController < ApplicationController
   def index
-    @requests = Request.all
+    @sport_event = SportEvent.find(params[:sport_event_id])
+    @requests = Request.where(sport_event: @sport_event)
   end
 
   def new
@@ -13,6 +14,7 @@ class RequestsController < ApplicationController
     @request.user = current_user
     @request.sport_event = @sport_event
     @message = Message.new
+    @review = Review.new # for the render
     if @request.save
       redirect_to sport_event_path(@request.sport_event), notice: "Request sent"
     else
