@@ -1,0 +1,89 @@
+.profile {
+  display: flex;
+  justify-content: space-around;
+  margin: 8px;
+  padding: 8px;
+
+  h2 {
+    font-size: 20px;
+    font-weight: 500; // big difference between 500 and 600
+    line-height: 28.2px;
+  }
+
+  p {
+    font-size: 11px;
+    margin: 0;
+  }
+
+  .about-me {
+    padding: 8px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid gray;
+    border-radius: 8px;
+    flex-wrap: wrap;
+    overflow: hidden;
+    line-height: 12px;
+  }
+}
+
+.profile-pic {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.review-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  border: solid 1px gray;
+  border-radius: 8px;
+  padding: 4px;
+  margin: 8px;
+}
+
+.review-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.image-username-rating {
+  display: flex;
+
+}
+
+.user-name {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  h3 {
+    font-size: 16px;
+  }
+}
+
+.reviewer-pic {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.user-review-date {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  p {
+    font-size: 12px;
+    margin: 0 8px;
+  }
+}

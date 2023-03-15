@@ -1,24 +1,11 @@
-<div class="navbar navbar-expand-lg navbar-light bg-blue">
-  <div class="container-fluid">
-    <% if user_signed_in? %>
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <%=link_to "Sweat Squad", :root, class: "nav-link" %>
-        </li>
-    </ul>
-
-    <ul class="navbar-nav me-right mb-2 mb-lg-0">
-      <li class="nav-item">
-        <%=link_to "Log out", "/users/sign_out", class: "nav-link", data: {turbo_method: :delete} %>
-      </li>
-    </ul>
-
-    <% else %>
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <%=link_to "Login", new_user_session_path, class: "nav-link" %>
-        </li>
-      </ul>
-    <% end %>
-  </div>
+<div class="navbar px-3">
+  <%= link_to '<i class="fa-solid fa-chevron-left"></i>'.html_safe, :back, class: "nav-link" %>
+  <%= link_to :root do %>
+    <img src="<%= asset_path "Logo_green.png"%>" alt="" width="40px">
+  <% end %>
+  <% if user_signed_in? %>
+    <%= link_to '<i class="fa-solid fa-arrow-right-from-bracket"></i>'.html_safe, "/users/sign_out", class: "nav-link", data: {turbo_method: :delete} %>
+  <% else %>
+    <%= link_to '<i class="fa-solid fa-right-to-bracket"></i>'.html_safe, new_user_session_path, class: "nav-link" %>
+  <% end %>
 </div>

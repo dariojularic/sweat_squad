@@ -3,7 +3,8 @@ class SportEventsController < ApplicationController
     if params[:query].present?
       @sql_results = SportEvent.where("address ILIKE ?", "%#{params[:query]}%")
       @sport_events = @sql_results.select { |sport_event| sport_event.user != current_user }
-      # raise
+    elsif params[:sport_event] && params[:sport_event][:sport].present?
+      @sport_events = SportEvent.where("sport ILIKE ?", "%#{params[:sport_event][:sport]}%")
     else
       @sport_events = SportEvent.all
     end
