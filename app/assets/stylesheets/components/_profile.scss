@@ -11,22 +11,24 @@
   }
 
   p {
-    font-size: 11px;
+    font-size: 14px;
     margin: 0;
   }
 
   .about-me {
     padding: 8px;
-    height: 100px;
+    margin: auto;
+    // height: 100px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 1px solid gray;
+    // border: 1px solid gray;
+    box-shadow: 0 2px 1px 2px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     flex-wrap: wrap;
     overflow: hidden;
-    line-height: 12px;
+    line-height: 16px;
   }
 }
 
@@ -40,16 +42,18 @@
 .profile-details {
   display: flex;
   flex-direction: column;
+  margin-left: 16px;
 }
 
 .review-container {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  border: solid 1px gray;
+  box-shadow: 0 4px 2px 3px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   padding: 4px;
   margin: 8px;
+  color: $dark-gray;
 }
 
 .review-info {
@@ -72,8 +76,8 @@
 }
 
 .reviewer-pic {
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   object-fit: cover;
 }
@@ -85,5 +89,20 @@
   p {
     font-size: 12px;
     margin: 0 8px;
+  }
+}
+
+.review-content {
+  font-size: 16px;
+}
+
+.my-rating {
+  h2 {
+    margin: auto;
+  }
+
+  i {
+    margin: auto;
+    font-weight: 800;
   }
 }

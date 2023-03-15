@@ -1,8 +1,11 @@
 class SportEventsController < ApplicationController
   def index
     if params[:query].present?
-      @sql_results = SportEvent.where("address ILIKE ?", "%#{params[:query]}%")
-      @sport_events = @sql_results.select { |sport_event| sport_event.user != current_user }
+      session[:query] = params[:query]
+      @sport_events = SportEvent.where("address ILIKE ?", "%#{params[:query]}%")
+      # @sport_events = @sql_results.select { |sport_event| sport_event.user != current_user }
+    elsif params[:sport_event] && params[:sport_event][:sport].present? && session[:query].present?
+      @sport_events = SportEvent.where("sport ILIKE :sport AND address ILIKE :location", sport: "%#{params[:sport_event][:sport]}%", location: "%#{session[:query]}%")
     elsif params[:sport_event] && params[:sport_event][:sport].present?
       @sport_events = SportEvent.where("sport ILIKE ?", "%#{params[:sport_event][:sport]}%")
     else
@@ -27,9 +30,16 @@ class SportEventsController < ApplicationController
 
   def create
     @sport_event = SportEvent.new(sport_event_params)
-    # raise
     @sport_event.sport.capitalize!
     @sport_event.user = current_user
+
+    if @sport_event.image
+      # @result = Cloudinary::Uploader.upload("my_image.jpg")
+      # @sport_event.image = cl_image_path @sport_event.image.key
+    else
+      @sport_event.image = "https://res.cloudinary.com/dc5dpsxvz/image/upload/v1678396659/SweatSquad/#{@sport_event.sport}#{rand(1..3)}.jpg"
+    end
+
     if @sport_event.save
       redirect_to sport_event_path(@sport_event)
     else

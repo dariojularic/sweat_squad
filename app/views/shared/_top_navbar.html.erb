@@ -1,5 +1,6 @@
 <div class="navbar px-3">
-  <%= link_to '<i class="fa-solid fa-chevron-left"></i>'.html_safe, :back, class: "nav-link" %>
+  <%#= link_to '<i class="fa-solid fa-chevron-left"></i>'.html_safe, :back, class: "nav-link" %>
+   <%= link_to '<i class="fa-solid fa-chevron-left"></i>'.html_safe, 'javascript:history.back()', class: "nav-link" %>
   <%= link_to :root do %>
     <img src="<%= asset_path "Logo_green.png"%>" alt="" width="40px">
   <% end %>

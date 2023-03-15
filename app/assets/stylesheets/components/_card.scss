@@ -22,13 +22,15 @@
 }
 
 .card-img {
-  height: 110px;
-  background-image: url(2.jpg);
+  height: 160px;
+  background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(2.jpg);
   background-size: cover;
   display: flex;
   align-items: end;
   justify-content: space-between;
   border-radius: 16px 16px 0 0;
+  color: white;
+
   h5 {
     font-size: 10px;
     font-weight: 600;
@@ -54,6 +56,8 @@
   display: flex;
   justify-content: space-between;
   padding: 4px 8px;
+  color: $dark-gray;
+
   h5 {
     font-size: 10px;
     font-weight: 600;

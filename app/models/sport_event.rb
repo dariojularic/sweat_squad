@@ -1,5 +1,5 @@
 class SportEvent < ApplicationRecord
-  SPORTS = %w[Football Basketball Baseball Soccer Tennis Golf Rugby Athletics Volleyball Cricket Handball TableTennis Badminton Cycling Futsal Darts Squash Martialarts Other]
+  SPORTS = %w[Football Basketball Soccer Tennis Golf Volleyball Handball TableTennis Badminton Darts Squash]
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
   belongs_to :user
