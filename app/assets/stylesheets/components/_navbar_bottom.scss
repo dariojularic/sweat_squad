@@ -3,7 +3,8 @@
   bottom: 0;
   width: 100%;
   text-align: center;
-  background-color: $blue;
+  // background-color: $blue;
+  background-image: linear-gradient($blue, $dark-blue);
   border-top-right-radius: 12px;
   border-top-left-radius: 12px;
 }

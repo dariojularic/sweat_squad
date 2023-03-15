@@ -1,19 +1,37 @@
+<%= simple_form_for :sport_event, method: :get, url: sport_events_path do |f| %>
+ <%= f.input :sport, prompt: "Choose your sport", collection: SportEvent::SPORTS, label: false %>
+ <%= f.button :submit, class: "btn btn-primary btn-block", style: "width: 100%;", value: "Apply sport filter" %>
+<% end %>
 <hr>
 <center><h1 class="h1-headers">Current Events Available</h1></center>
 <hr>
 <div class= "cards">
   <% @sport_events.each do |event| %>
-    <div class="card">
-      <div class="card-text">
-        <h2><%= link_to event.sport, sport_event_path(event), class: 'no-link' %></h2>
-        <p><%= event.city_name %></p>
-        <%# <p><%= event.user.username %></p>
+    <%=  link_to sport_event_path(event) do %>
+      <div class="card-wrapper text-decoration-none">
+        <div class="card">
+          <div class="card-img">
+            <h5><i class="showpage-icons fa-solid fa-location-dot"></i><%= event.address %></h5>
+            <h3 class="text-decoration-transparent"><%= event.sport %></h3>
+          </div>
+
+          <div class="card-details">
+            <div class="img-username">
+              <% if event.user.photo.attached? %>
+                <%= cl_image_tag(event.user.photo.key, :class => "avatar") %>
+              <% else %>
+                <img class="avatar-large" alt="avatar-large" src=<%= asset_path "avatar.png"%> />
+              <% end %>
+              <p><%= event.user.username %></p>
+            </div>
+
+            <div class="date-location">
+              <h5><i class="showpage-icons fa-regular fa-calendar-days"></i><%= event.start_at.strftime("%d %B") %></h5> <%# needs some polishing  %>
+              <h5><i class="showpage-icons fa-regular fa-clock"></i><%= event.start_at.strftime("%H:%M") %></h5>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
 </div>
-
-<%= simple_form_for :sport_event, method: :get, url: sport_events_path do |f| %>
- <%= f.input :sport, collection: SportEvent::SPORTS %>
- <%= f.submit %>
-<% end %>

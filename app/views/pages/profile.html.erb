@@ -1,6 +1,51 @@
-<hr>
-<center><h1><%= @user.username %>'s user profile</h1></center>
-<hr>
+
+<div class="profile">
+  <div class="profile-image">
+    <% if @user.photo.attached? %>
+      <%= cl_image_tag(@user.photo.key, :class => "profile-pic") %>
+    <% else %>
+      <img class="profile-pic" alt="avatar-large" src=<%= asset_path "avatar.png"%> />
+    <% end %>
+  </div>
+
+  <div class="profile-details">
+    <div>
+      <h2><%= @user.username %> 5</h2>
+    </div>
+    <div class="about-me flex-grow-1 text-break">
+      <p><%= @user.about_me %></p>
+    </div>
+  </div>
+</div>
+
+<div class="review-container">
+  <div class="review-info">
+    <div class="image-username-rating">
+      <div class="review-img">
+        <% if @user.photo.attached? %>
+          <%= cl_image_tag(@user.photo.key, :class => "reviewer-pic") %>
+        <% else %>
+          <img class="reviewer-pic" alt="avatar-large" src=<%= asset_path "avatar.png"%> />
+        <% end %>
+      </div>
+      <div class="user-name">
+        <h3>Username</h3>
+        <i class="fa-solid fa-star"></i>
+      </div>
+    </div>
+
+    <div class="user-review-date">
+      <p>Date</p>
+      <p>Sport</p>
+    </div>
+  </div>
+
+  <div class="review-content">
+    <p>Review content</p>
+  </div>
+</div>
+
+
 <% sum = 0 %>
 <% counter = 0 %>
 <% @user.sport_events.each do |event| %>
