@@ -33,13 +33,12 @@ class SportEventsController < ApplicationController
     @sport_event.sport.capitalize!
     @sport_event.user = current_user
 
-    if @sport_event.image
+    unless @sport_event.photo.attached?
       # @result = Cloudinary::Uploader.upload("my_image.jpg")
       # @sport_event.image = cl_image_path @sport_event.image.key
-    else
       @sport_event.image = "https://res.cloudinary.com/dc5dpsxvz/image/upload/v1678396659/SweatSquad/#{@sport_event.sport}#{rand(1..3)}.jpg"
-    end
-
+    end#
+    
     if @sport_event.save
       redirect_to sport_event_path(@sport_event)
     else
@@ -76,6 +75,6 @@ class SportEventsController < ApplicationController
   private
 
   def sport_event_params
-    params.require(:sport_event).permit(:address, :start_at, :sport, :description, :image)
+    params.require(:sport_event).permit(:address, :start_at, :sport, :description, :photo)
   end
 end

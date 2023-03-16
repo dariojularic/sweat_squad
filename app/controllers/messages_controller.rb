@@ -5,15 +5,21 @@ class MessagesController < ApplicationController
     @message.user = current_user
     @message.sport_event = @sport_event
     if @message.save
+      # SportEventChannel.broadcast_to(
+      #   @sport_event,
+      #   render_to_string(partial: "message", locals: { message: @message })
+      # )
       SportEventChannel.broadcast_to(
         @sport_event,
-        render_to_string(partial: "message", locals: { message: @message })
+        message: render_to_string(partial: "message", locals: { message: @message }),
+        sender_id: @message.user.id
       )
       head :ok
     else
-      render "sport_events/show", status: :unprocessable_entity
+      render "sport_events/chat", status: :unprocessable_entity
     end
   end
+
 
   private
 

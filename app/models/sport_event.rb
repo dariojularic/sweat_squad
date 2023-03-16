@@ -1,5 +1,5 @@
 class SportEvent < ApplicationRecord
-  SPORTS = %w[Football Basketball Soccer Tennis Golf Volleyball Handball TableTennis Badminton Darts Squash]
+  SPORTS = %w[Football Basketball Tennis Golf Volleyball TableTennis Badminton Darts Squash Beerpong]
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
   belongs_to :user
@@ -11,7 +11,7 @@ class SportEvent < ApplicationRecord
   validates :start_at, presence: true
   validates :sport, presence: true
   validates :sport, inclusion: { in: SPORTS }
-  # has_one_attached :image
+  has_one_attached :photo
 
   def city_name
     address.split(",").first

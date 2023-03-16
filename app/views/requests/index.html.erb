@@ -1,11 +1,35 @@
-<h1>This is index for requests</h1>
-<ul>
-  <% @requests.each do |request| %>
-    <% if request.accepted == false %>
-      <li><%= request.user.username %><br>
-      <%= request.message %></li>
-      <%= link_to "Accept", accept_request_path(request), data: { turbo_method: :patch } %>
-      <%= link_to "Decline", accept_request_path(request), data: { turbo_method: :delete } %>
-    <% end %>
+<center><h1>Requests for this event</h1></center>
+<% @requests.each do |request| %>
+  <%=  link_to profile_path(request.user), class: "text-decoration-none text-dark" do %>
+    <div class="review-container my-4">
+      <div class="review-info">
+        <div class="image-username-rating">
+          <div class="review-img">
+            <% if request.user.photo.attached? %>
+              <%= cl_image_tag(request.user.photo.key, :class => "reviewer-pic") %>
+            <% else %>
+              <img class="reviewer-pic" alt="avatar-large" src=<%= asset_path "avatar.png"%> />
+            <% end %>
+          </div>
+          <div class="user-name">
+            <h3><%= request.user.username %></h3>
+          </div>
+        </div>
+
+        <div class="user-review-date">
+          <p><%= request.created_at.strftime("%d %B") %></p>
+          <p><%= request.sport_event.sport %></p>
+        </div>
+      </div>
+
+      <div class="review-content mt-3 p-1 text-break">
+        <p class="m-1"><%= request.message %></p>
+      </div>
+
+       <div>
+        <center><%= link_to '<i class="fa-solid fa-x"></i>'.html_safe, accept_request_path(request), data: { turbo_method: :delete }, style: "color: red;",  class: "mx-3" %>
+        <%= link_to '<i class="fa-solid fa-check"></i>'.html_safe, accept_request_path(request), data: { turbo_method: :patch }, style: "color: green;" %></center>
+      </div>
+    </div>
   <% end %>
-</ul>
+<% end %>

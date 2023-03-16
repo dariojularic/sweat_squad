@@ -1,7 +1,7 @@
 class RequestsController < ApplicationController
   def index
     @sport_event = SportEvent.find(params[:sport_event_id])
-    @requests = Request.where(sport_event: @sport_event)
+    @requests = Request.where(sport_event: @sport_event, accepted: false)
   end
 
   def new

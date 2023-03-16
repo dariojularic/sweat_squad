@@ -42,16 +42,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_14_082952) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "invitations", force: :cascade do |t|
-    t.boolean "accepted"
-    t.bigint "user_id", null: false
-    t.bigint "sport_event_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["sport_event_id"], name: "index_invitations_on_sport_event_id"
-    t.index ["user_id"], name: "index_invitations_on_user_id"
-  end
-
   create_table "messages", force: :cascade do |t|
     t.text "content"
     t.bigint "user_id", null: false
@@ -118,8 +108,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_14_082952) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "invitations", "sport_events"
-  add_foreign_key "invitations", "users"
   add_foreign_key "messages", "sport_events"
   add_foreign_key "messages", "users"
   add_foreign_key "requests", "sport_events"

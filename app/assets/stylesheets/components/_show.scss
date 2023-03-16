@@ -2,6 +2,8 @@
   overflow: hidden;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+
+
 }
 
 .card-trip > img {
@@ -27,8 +29,17 @@
   padding: 16px;
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  // align-items: flex-end;
   position: relative;
+
+  h2 {
+    font-size: 32px;
+    padding: 8px;
+  }
+
+  p {
+    font-size: 16px;
+  }
 }
 
 .card-trip-infos .reviewer-pic {
@@ -45,7 +56,7 @@
 .show-img {
   background-size: cover;
   background-position: center;
-  height: 180px;
+  height: 50vh;
   display: flex;
   justify-content: start;
   align-items: end;
@@ -53,15 +64,16 @@
   font-size: 24px;
   font-weight: bold;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-  border-radius: 5px;
+  border-radius: 0 0 4px 4px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
 
   h5 {
-    font-size: 10px;
+    font-size: 20px;
     font-weight: 600;
     line-height: 12.6px;
     margin: 4px 10px;
   }
+
 
   h3 {
     font-size: 18px;
@@ -72,5 +84,16 @@
 
   i {
     margin-right: 2px;
+    color: white;
   }
 }
+
+.card-trip-pricing {
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .card-trip-infos {
+    flex-direction: column;
+
+  }
