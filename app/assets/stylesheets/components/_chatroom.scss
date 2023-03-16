@@ -1,5 +1,5 @@
 .chatroom {
-  background: white;
+  background: rgb(255, 255, 255);
   margin-top: 9px;
   height: calc(100vh - 75px);
   display: flex;
@@ -26,5 +26,9 @@
     .form-group {
       margin-bottom: 0;
     }
+  }
+
+  p {
+    color: rgb(0, 0, 0);
   }
 }

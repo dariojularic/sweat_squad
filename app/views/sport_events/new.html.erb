@@ -1,16 +1,20 @@
 <hr>
-  <center><h1>Create an Event Form</h1></center>
+  <center><h1>Create an Event</h1></center>
 <hr>
 <div class= "container">
   <%= simple_form_for @sport_event, data: { controller: 'flatpickr' } do |f| %>
-    <%= f.input :address,
+    <%= f.input :address, label: false,
       input_html: {data: {address_autocomplete_target: "address"}, class: "d-none"},
       wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
-    <%= f.input :sport, collection: SportEvent::SPORTS %>
-    <%= f.input :description %>
-    <%= f.input :start_at, as: :string, input_html: { data: { flatpickr_target: "startAt" } } %>
-    <%= f.input :image, as: :file %>
+      <hr>
+    <%= f.input :sport, label: false, collection: SportEvent::SPORTS, prompt: "Choose your sport" %>
+      <hr>
+    <%= f.input :description, label: false, placeholder: "Short description about your sport event" %>
+      <hr>
+    <%= f.input :start_at, label: false, as: :string, input_html: { data: { flatpickr_target: "startAt" } }, placeholder: "Select date and time for your event" %>
+      <hr>
+    <%= f.input :photo, as: :file %>
     <hr>
-    <center><%= f.submit %></center>
+    <%= f.submit class: "btn btn-primary w-100" %>
   <% end %>
 </div>

@@ -6,53 +6,68 @@
       <img class="reviewer-pic" alt="avatar-large" src=<%= asset_path "avatar.png"%> />
     <% end %>
   </div>
-  
+
   <div class="user-name">
     <h3>Hello, <strong><%= @user.username %></strong></h3>
   </div>
 </div>
-<div>
-  <h4>Events you are hosting</h4>
+
+<div class="mt-3">
+  <center><h4>Events you are hosting</h4></center>
 </div>
 
 
-  <div class= "cards p-2">
-    <% @sport_events.each do |event| %>
-      <%= link_to sport_event_requests_path(event), class: "text-decoration-none" do %>
-        <div class="card-product my-2">
-          <img src="<%= event.image %>" />
-          <div class="d-flex" style="justify-content: space-between; flex-grow: 1;">
-            <div class="card-product-infos p-1" id="request-details">
-              <h3 class="text-decoration-transparent"><%= event.sport %></h3>
-              <h2>Request (<%= event.requests.where(accepted: false).count %>)</h2>
-              <h5><i class="showpage-icons fa-solid fa-location-dot"></i><%= event.address %></h5>
-            </div>
+<div class= "cards p-2">
+  <% @sport_events.each do |event| %>
+    <%= link_to sport_event_requests_path(event), class: "text-decoration-none" do %>
+      <div class="card-product my-2">
+        <img src="<%= event.photo.attached? ? cl_image_path(event.photo.key) : event.image %>" />
+        <div class="d-flex" style="justify-content: space-between; flex-grow: 1;">
+          <div class="card-product-infos p-1" id="request-details">
+            <h3 class="text-decoration-transparent"><%= event.sport %></h3>
+            <h2>Request (<%= event.requests.where(accepted: false).count %>)</h2>
+            <h5><i class="showpage-icons fa-solid fa-location-dot"></i><%= event.address %></h5>
+          </div>
 
-            <div class="date-location">
-              <h5><i class="showpage-icons fa-regular fa-calendar-days"></i><%= event.start_at.strftime("%d %B") %></h5> <%# needs some polishing  %>
-              <h5><i class="showpage-icons fa-regular fa-clock"></i><%= event.start_at.strftime("%H:%M") %></h5>
-            </div>
+          <div class="date-location">
+            <h5><i class="showpage-icons fa-regular fa-calendar-days"></i><%= event.start_at.strftime("%d %B") %></h5> <%# needs some polishing  %>
+            <h5><i class="showpage-icons fa-regular fa-clock"></i><%= event.start_at.strftime("%H:%M") %></h5>
           </div>
         </div>
-      <% end %>
+      </div>
     <% end %>
-  </div>
+  <% end %>
+</div>
 
 
 <hr>
-<h4>Events I've joined</h4>
+<center><h4>Events I've requested to join</h4></center>
 
-  <div class= "cards">
-    <% @requests.each do |request| %>
-      <div class= "card">
-        <div class="card-text">
-            <% if request.accepted %>
-              <h2><%= link_to request.sport_event.sport, sport_event_path(request.sport_event), class: 'no-link' %></h2>
-              <%= request.sport_event.user.username %><br><%= link_to "Leave event", accept_request_path(request), data: { turbo_method: :patch } %></li>
+<div class= "cards">
+  <% @requests.each do |request| %>
+    <%= link_to sport_event_path(request.sport_event), class: "text-decoration-none" do %>
+      <div class="card-product my-2">
+        <img src="<%= request.sport_event.image %>" />
+        <div class="d-flex" style="justify-content: space-between; flex-grow: 1;">
+          <div class="card-product-infos p-1" id="request-details">
+            <h3 class="text-decoration-transparent"><%= request.sport_event.sport %></h3>
+            <% if request.accepted == false %>
+              <h2>Request pending</h2>
+            <% elsif request.accepted == true %>
+              <h2>Request accepted</h2>
             <% end %>
-            <p><%= request.sport_event.address %></p>
-            <p>Not accepted yet</p>
+            <h5><i class="showpage-icons fa-solid fa-location-dot"></i><%= request.sport_event.address %></h5>
+          </div>
+
+          <div class="date-location">
+            <h5><i class="showpage-icons fa-regular fa-calendar-days"></i><%= request.sport_event.start_at.strftime("%d %B") %></h5> <%# needs some polishing  %>
+            <h5><i class="showpage-icons fa-regular fa-clock"></i><%= request.sport_event.start_at.strftime("%H:%M") %></h5>
+          </div>
         </div>
       </div>
-      <% end %>
-  </div>
+    <% end %>
+  <% end %>
+</div>
+<br>
+<br>
+<br>

@@ -1,63 +1,63 @@
 <div class="card-trip">
-  <div class="show-img" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= @sport_event.image%>)">
-    <h5><i class="showpage-icons fa-solid fa-location-dot"></i><%= @sport_event.address %></h5>
+  <div class="show-img" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= @sport_event.photo.attached? ? cl_image_path(@sport_event.photo.key) : @sport_event.image %>)">
+    <h5 class="mb-2"><i class="showpage-icons fa-solid fa-location-dot"></i>  <%= @sport_event.address.first(20) %>...</h5>
   </div>
 
-  <div class="card-trip-infos">
-    <div>
-      <h2>Title here</h2>
-      <p>Short description here!</p>
-    </div>
-    <div>
+  <div class="card-trip-infos py-5">
+    <div class="d-flex justify-content-around">
       <h4 class="card-trip-pricing"><i class="showpage-icons fa-regular fa-calendar-days"></i><%= @sport_event.start_at.strftime("%d %B") %></h4>
-      <h4 class="card-trip-pricing"><i class="showpage-icons fa-regular fa-clock"></i><%= @sport_event.start_at.strftime("%d %B") %></h4>
+      <h4 class="card-trip-pricing"><i class="showpage-icons fa-regular fa-clock"></i><%= @sport_event.start_at.strftime("%H %M") %></h4>
     </div>
-    <% if @sport_event.user.photo.attached? %>
-      <%= cl_image_tag(@sport_event.user.photo.key, :class => "reviewer-pic avatar-bordered") %>
-    <% else %>
-      <img class="reviewer-pic avatar-bordered" alt="avatar-large" src=<%= asset_path "avatar.png"%> />
-    <% end %>
-  </div>
-</div>
 
-<%= link_to "host", profile_path(@sport_event.user) %>
+    <div class="d-flex flex-column align-items-center text-break">
+      <h2><%= @sport_event.sport %></h2>
+      <p><%= @sport_event.description %></p>
+    </div>
 
-
-<div>
-  <ol>
-    <% @sport_event.requests.each do |request| %>
-      <% if request.accepted == false %>
-        <p></i><%= request.user.username %><br><%= request.message %></p>
+    <%= link_to profile_path(@sport_event.user) do %>
+      <% if @sport_event.user.photo.attached? %>
+        <%= cl_image_tag(@sport_event.user.photo.key, :class => "reviewer-pic avatar-bordered") %>
+      <% else %>
+        <img class="reviewer-pic avatar-bordered" alt="avatar-large" src=<%= asset_path "avatar.png"%> />
       <% end %>
     <% end %>
-  </ol>
+  </div>
 </div>
 
 <div class= "container">
-    <% if current_user != @sport_event.user && (@user_request.nil?) %>
+    <%# <% raise %>
+  <% if current_user != @sport_event.user && (@user_request.nil?) %>
     <%# display only if the user hasnt sent a request yet %>
+    <div class="my-3">
       <%= simple_form_for [@sport_event, @request] do |f| %>
-        <%= f.input :message %>
-        <center><%= f.button :submit, "Request to join" %></center>
+        <%= f.input :message, placeholder: "Write a message to #{@sport_event.user.username}...", label: false, as: :text %>
+        <%= f.button :submit, "Request to join", class: "btn btn-primary w-100" %>
       <% end %>
+    </div>
+  <% elsif @user_request&.accepted == false %>
+    <div class="text-center mt-2">
+      <h2>Request pending</h2>
+    </div>
+  <% elsif @user_request&.accepted == true %>
+    <div class= "container">
+      <% if current_user != @sport_event.user && @user_request &&  !current_user.review_given?(@sport_event) %>
+        <%= simple_form_for [@sport_event, @review] do |f| %>
+          <%= f.input :rating,label: false, placeholder: "Give #{@sport_event.user.username} a rating 1 - 5", input_html: { class: "my-3"} %>
+          <%# <br> %>
+          <%= f.input :content,label: false, placeholder: "Tell us about your experience with #{@sport_event.user.username}", input_html: { class: "my-3"} %>
+          <center><%= f.button :submit, "Create a review", class: 'btn btn-success' %></center>
+        <% end %>
+      <% end %>
+    </div>
   <% end %>
 </div>
-
-
-
-<div class= "container">
-    <% if current_user != @sport_event.user %>
-      <%= simple_form_for [@sport_event, @review] do |f| %>
-          <%= f.input :rating %>
-          <%= f.input :content %>
-          <center><%= f.button :submit, "Create a review", class: 'btn btn-success'%></center>
-    <% end %>
+<% if current_user == @sport_event.user || @user_request&.accepted == true %>
+  <%= link_to "#{@sport_event.sport} chatroom", chat_sport_event_path(@sport_event), class: "btn btn-primary w-100 my-3" %>
 <% end %>
-</div>
 
 
 
-<div class= "showpage-edit-delete-btns">
+<div class= "showpage-edit-delete-btns mb-5">
   <% if current_user == @sport_event.user %>
     <%= link_to "Update", edit_sport_event_path(@sport_event), class: 'btn btn-success' %>
     <%= link_to 'Delete', @sport_event, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this event?" }, class: 'btn btn-danger' %>
@@ -65,3 +65,5 @@
     <%# <%= link_to "Request to join", sport_event_requests_path(@sport_event), class: 'btn btn-success' %>
   <% end %>
 </div>
+<br>
+<br>
