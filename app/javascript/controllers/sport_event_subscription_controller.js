@@ -14,7 +14,6 @@ export default class extends Controller {
   }
 
   resetForm(event) {
-    console.log("Resetting the form")
     event.target.reset()
   }
 
@@ -25,8 +24,6 @@ export default class extends Controller {
 
   #insertMessageAndScrollDown(data) {
     const currentUserIsSender = this.currentUserIdValue === data.sender_id
-    console.log(data);
-    console.log(this.currentUserIdValue);
     const messageElement = this.#buildMessageElement(currentUserIsSender, data.message)
     this.messagesTarget.insertAdjacentHTML("beforeend", messageElement)
     this.messagesTarget.scrollTo(0, this.messagesTarget.scrollHeight)
