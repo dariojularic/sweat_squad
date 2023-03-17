@@ -47,7 +47,7 @@
   <% @requests.each do |request| %>
     <%= link_to sport_event_path(request.sport_event), class: "text-decoration-none" do %>
       <div class="card-product my-2">
-        <img src="<%= request.sport_event.image %>" />
+        <img src="<%= request.sport_event.photo.attached? ? cl_image_path(request.sport_event.photo.key) : request.sport_event.image %>" />
         <div class="d-flex" style="justify-content: space-between; flex-grow: 1;">
           <div class="card-product-infos p-1" id="request-details">
             <h3 class="text-decoration-transparent"><%= request.sport_event.sport %></h3>
