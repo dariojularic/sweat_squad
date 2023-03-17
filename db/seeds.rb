@@ -63,7 +63,7 @@ boris_event = SportEvent.new(sport: "Tennis", address: "Tal, Munich, Bavaria", s
 boris_event.photo.attach(io: URI.open("https://res.cloudinary.com/dc5dpsxvz/image/upload/v1678396659/SweatSquad/#{boris_event.sport}#{rand(1..3)}.jpg"), filename: "#{boris_event.sport}.jpg", content_type: 'image/jpg')
 boris_event.save!
 
-mlilo_event = SportEvent.new(sport: "Badminton", address: "Ludwigstraße, Munich", start_at: "2023-08-01 12:00:00", user: mlilo, description: "Hey there! If you want to play some badminton after work, let me know! I'm looking for someone to join me.")
+mlilo_event = SportEvent.new(sport: "TableTennis", address: "Ludwigstraße, Munich", start_at: "2023-08-01 12:00:00", user: mlilo, description: "Hey there! If you want to play some table tennis after work, let me know! I'm looking for someone to join me.")
 mlilo_event.photo.attach(io: URI.open("https://res.cloudinary.com/dc5dpsxvz/image/upload/v1678396659/SweatSquad/#{mlilo_event.sport}#{rand(1..3)}.jpg"), filename: "#{mlilo_event.sport}.jpg", content_type: 'image/jpg')
 mlilo_event.save!
 
