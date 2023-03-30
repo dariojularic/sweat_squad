@@ -1,8 +1,10 @@
-<div class="navfooter">
-  <div class="flex-container">
-      <%= link_to dashboard_path do %><i class="navfooter-links fa-solid fa-gauge"></i><% end %>
-      <%= link_to sport_events_path do %><i class="navfooter-links fa-solid fa-list"></i><% end %>
-      <%= link_to new_sport_event_path do %><i class="navfooter-links fa-solid fa-circle-plus"></i><% end %>
-      <%= link_to profile_path(current_user) do %><i class="navfooter-links fa-regular fa-user"></i><% end %>
+<% if current_user %>
+  <div class="navfooter">
+    <div class="flex-container">
+        <%= link_to dashboard_path do %><i class="navfooter-links fa-solid fa-gauge"></i><% end %>
+        <%= link_to sport_events_path do %><i class="navfooter-links fa-solid fa-list"></i><% end %>
+        <%= link_to new_sport_event_path do %><i class="navfooter-links fa-solid fa-circle-plus"></i><% end %>
+        <%= link_to profile_path(current_user) do %><i class="navfooter-links fa-regular fa-user"></i><% end %>
+    </div>
   </div>
-</div>
+<% end %>
