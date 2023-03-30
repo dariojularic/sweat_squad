@@ -3,6 +3,6 @@
       <%= link_to dashboard_path do %><i class="navfooter-links fa-solid fa-gauge"></i><% end %>
       <%= link_to sport_events_path do %><i class="navfooter-links fa-solid fa-list"></i><% end %>
       <%= link_to new_sport_event_path do %><i class="navfooter-links fa-solid fa-circle-plus"></i><% end %>
-      <%= link_to account_path do %><i class="navfooter-links fa-regular fa-user"></i><% end %>
+      <%= link_to profile_path(current_user) do %><i class="navfooter-links fa-regular fa-user"></i><% end %>
   </div>
 </div>
